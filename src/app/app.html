@@ -1,0 +1,29 @@
+<ion-menu id="mymenu" side="left" [content]="mycontent">
+    <ion-header>
+      <ion-toolbar color="robin">   
+          <div menuClose>
+          <ion-row  (click)="profile()">
+            <ion-col col-4 style="text-align:right;"> 
+              <ion-avatar item-start>
+              <img src="assets/icon/boy.png" height="80px" width="80px">
+              </ion-avatar>
+            </ion-col>
+            <ion-col col-8 style="text-align:left;">
+              <h5 style="color:white;">{{ nama }}</h5>
+              <p style="color:white;font-size: 12px;" >{{ email }}</p>
+            </ion-col>
+          </ion-row>
+          </div>
+      </ion-toolbar>
+    </ion-header>
+      
+        <ion-content >
+          <ion-list> 
+          <ion-item menuClose icon-start item-end *ngFor="let mn of menu" (click)="open(mn.log)" >
+              <h2><ion-icon name="{{ mn.icon }}" class="huruf"></ion-icon> <label>{{ mn.name }}</label></h2>
+          </ion-item>
+          </ion-list>
+        </ion-content>
+      </ion-menu>
+      
+      <ion-nav #mycontent [root]="rootPage"></ion-nav>

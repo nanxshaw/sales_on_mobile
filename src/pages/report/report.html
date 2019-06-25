@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar color="robin" style="padding:0px;">
+      <ion-toolbar>
+
+          <ion-title center>
+              REPORT
+          </ion-title>
+
+      </ion-toolbar>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+<ion-grid class="pad">
+    <ion-row>
+      <ion-col col-12 >
+        <div class="kotak" (click)="open(1)">
+          <img src="assets/icon/teamwork.png" height="100px" width="100px" /><br>
+          Customer
+        </div>
+      </ion-col>
+      <ion-col col-12 >
+        <div class="kotak" (click)="open(2)">
+          <img src="assets/icon/request.png" height="100px" width="100px" /><br>
+          Request
+        </div>
+      </ion-col>
+      <ion-col col-12 >
+        <div class="kotak" (click)="open(3)">
+          <img src="assets/icon/calendar.png" height="100px" width="100px" /><br>
+          Appointment
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

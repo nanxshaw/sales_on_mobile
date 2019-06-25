@@ -1,0 +1,27 @@
+
+<ion-content padding>
+  <h1 class="title">SALES ON MOBILE</h1>
+  <p class="subtitle">Your Business Will Be Easier</p>
+  
+    <ion-item>
+      <ion-input type="email" [(ngModel)]="user.email" placeholder="E-mail"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+        <ion-label>Company</ion-label>
+        <ion-select [(ngModel)]="user.company">
+          <ion-option value="">- PILIH -</ion-option>
+          <ion-option *ngFor="let list of ev" value="{{ list.company }}">{{ list.company }}</ion-option>
+        </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="password" [(ngModel)]="user.password" placeholder="Password"></ion-input>
+    </ion-item>
+  
+  <div class="btn-container">
+    <button ion-button full color="robin" (click)="login()">Login</button>
+    <button ion-button full color="robin" outline (click)="register()" fill="clear">Register</button>
+  </div>
+  </ion-content>
+  

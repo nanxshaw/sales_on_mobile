@@ -1,0 +1,7 @@
+{
+  "name": "pssi",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

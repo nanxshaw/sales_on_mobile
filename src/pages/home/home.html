@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-navbar color="robin" style="padding:0px;">
+      <ion-toolbar>
+
+          <ion-buttons left>
+              <button ion-button color="robin" icon-only menuToggle>
+                  <ion-icon name="menu" style="color:white;"></ion-icon>
+              </button>
+          </ion-buttons>
+
+          <ion-title center>
+              HOME
+          </ion-title>
+
+      </ion-toolbar>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <h2 style="text-align: center;">MENU</h2>
+  <ion-grid class="pad">
+    <ion-row>
+      <ion-col col-6 >
+        <div class="kotak" (click)="open(1)">
+          <img src="assets/icon/teamwork.png" height="100px" width="100px" /><br>
+          Customer
+        </div>
+      </ion-col>
+      <ion-col col-6 >
+        <div class="kotak" (click)="open(2)">
+          <img src="assets/icon/product.png" height="100px" width="100px" /><br>
+          Product
+        </div>
+      </ion-col>
+      <ion-col col-12 >
+        <div class="kotak" (click)="open(3)">
+          <img src="assets/icon/request.png" height="100px" width="100px" /><br>
+          Request
+        </div>
+      </ion-col>
+      <ion-col col-6 >
+        <div class="kotak" (click)="open(4)">
+          <img src="assets/icon/calendar.png" height="100px" width="100px" /><br>
+          Appointment
+        </div>
+      </ion-col>
+      <ion-col col-6 >
+        <div class="kotak" (click)="open(5)">
+          <img src="assets/icon/diagram.png" height="100px" width="100px" /><br>
+          Report
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

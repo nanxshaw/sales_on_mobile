@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar color="robin" style="padding:0px;">
+      <ion-toolbar>
+
+          <ion-title center>
+              CUSTOMER
+          </ion-title>
+
+      </ion-toolbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+<ion-searchbar [(ngModel)]="cari" (keyup.enter)="search()"></ion-searchbar>
+<ion-list>
+  <ion-item *ngFor="let item of items"  (click)="OpenDetail(item)">
+    <b>{{ item.name }}</b> <br>
+    {{ item.company }} <br>
+    <button ion-button clear color="robin" item-end>
+      <ion-icon name="ios-arrow-forward" end></ion-icon>
+    </button>
+  </ion-item>
+</ion-list>
+
+
+  <!-- <ion-fab right bottom>
+    <button ion-fab color="robin" (click)="tambah()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab> -->
+
+</ion-content>

@@ -1,0 +1,51 @@
+
+
+<ion-content padding>
+  <h2 class="judul">Register</h2>
+<ion-item>
+  <ion-label stacked>Name</ion-label>
+  <ion-input [(ngModel)]="user.name" type="text"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label stacked>Company</ion-label>
+  <ion-input [(ngModel)]="user.company" type="text"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label stacked>Position</ion-label>
+  <ion-input [(ngModel)]="user.position" type="text"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label stacked>Phone</ion-label>
+  <ion-input [(ngModel)]="user.phone" type="number"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label stacked>E-mail</ion-label>
+  <ion-input [(ngModel)]="user.email" type="email"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label stacked>Password</ion-label>
+  <ion-input [(ngModel)]="user.password" type="password"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label stacked>Retype Password</ion-label>
+  <ion-input [(ngModel)]="user.re_password" type="password"></ion-input>
+</ion-item>
+
+
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <button ion-button full color="robin" outline (click)="back()">Cancel</button>
+    </ion-col>
+    <ion-col>
+      <button ion-button full color="robin" (click)="register()">Submit</button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>

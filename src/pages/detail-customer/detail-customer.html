@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar color="robin" style="padding:0px;">
+      <ion-toolbar>
+
+          <ion-title center>
+              DATA CUSTOMER
+          </ion-title>
+
+      </ion-toolbar>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-item>
+    <ion-label stacked>Name</ion-label>
+    <ion-input [(ngModel)]="data.name" type="text" disabled="true"></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label stacked>Company</ion-label>
+    <ion-input [(ngModel)]="data.company" type="text" disabled="true"></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label stacked>Position</ion-label>
+    <ion-input [(ngModel)]="data.position" type="text" disabled="true"></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label stacked>Phone</ion-label>
+    <ion-input [(ngModel)]="data.phone" type="text" disabled="true"></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label stacked>E-mail</ion-label>
+    <ion-input [(ngModel)]="data.email" type="email" disabled="true"></ion-input>
+  </ion-item>
+  
+</ion-content>
