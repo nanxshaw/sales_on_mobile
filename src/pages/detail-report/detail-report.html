@@ -3,7 +3,7 @@
         <ion-toolbar>
   
             <ion-title center>
-              CUSTOMER REPORT
+              DETAIL REPORT
             </ion-title>
   
         </ion-toolbar>
@@ -12,13 +12,13 @@
   
 
 <ion-content padding>
-Periode
+<h2>Periode</h2>
 <ion-grid>
   <ion-row>
     <ion-col col-6>
         <ion-item>
           <ion-label stacked>Month</ion-label>
-          <ion-select [(ngModel)]="data.m" multiple="false" cancelText="Cancel" okText="Okay!">
+          <ion-select [(ngModel)]="in.m" multiple="false" cancelText="Cancel" okText="Okay!">
             <ion-option *ngFor="let ms of m" [value] = "ms" >{{ ms }}</ion-option>
           </ion-select>
         </ion-item>
@@ -26,11 +26,24 @@ Periode
     <ion-col col-6>
         <ion-item>
           <ion-label stacked>Year</ion-label>
-          <ion-select [(ngModel)]="data.y" multiple="false" cancelText="Cancel" okText="Okay!">
+          <ion-select [(ngModel)]="in.y" (ngModelChange)="onChange()" multiple="false" cancelText="Cancel" okText="Okay!">
             <ion-option *ngFor="let ys of y" [value] = "ys"  >{{ ys }}</ion-option>
           </ion-select>
         </ion-item>
     </ion-col>
+    <!-- <ion-col col-4>
+        <button ion-button color="robbin" full >Submit</button>
+    </ion-col> -->
   </ion-row>
 </ion-grid>
+
+
+    <ion-card>
+      <ion-card-header>
+        Bar Chart
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #barCanvas></canvas>
+      </ion-card-content>
+    </ion-card>
 </ion-content>

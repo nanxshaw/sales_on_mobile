@@ -37,6 +37,9 @@
     <ion-col>
       <button ion-button full color="robin" (click)="done()">Submit</button>
     </ion-col>
+    <ion-col col-12>
+      <button *ngIf="data != ''" ion-button full color="robin" outline (click)="del()">Delete</button>
+    </ion-col>
   </ion-row>
 </ion-grid>
 </ion-content>

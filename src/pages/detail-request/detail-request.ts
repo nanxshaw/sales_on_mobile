@@ -125,6 +125,19 @@ export class DetailRequestPage {
     });
   }
   
+  del(){
+    
+    let json = {
+      "id" : this.datas.requesth_id,
+    };
+    this.rest.postRest('delete_request', json).then((res) => { 
+    
+      console.log(res);
+      this.navCtrl.pop();
+    
+    },(err) => {
+    });
+  }
   resize() {
       var element = this.myInput['_elementRef'].nativeElement.getElementsByClassName("text-input")[0];
       var scrollHeight = element.scrollHeight;

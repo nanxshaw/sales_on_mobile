@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, LoadingController, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController, MenuController, Events } from 'ionic-angular';
 import { RegisterPage } from '../register/register';
 import { RestProvider } from '../../providers/rest/rest';
 import { DatabaseProvider } from '../../providers/database/database';
@@ -28,6 +28,7 @@ export class LoginPage {
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     public rest : RestProvider,
+    public events: Events,
     private loadingCtrl: LoadingController,
     public alertCtrl: AlertController, 
     public globalvars:GlobalvarProvider,
@@ -67,6 +68,7 @@ export class LoginPage {
       
       this.loadermsg.dismiss();
       this.lgn = res;
+      this.updateUserInfo(this.lgn.data[0]);
       if( this.lgn.success != true ) {
         this.showAlert('Login', this.lgn.message);
       }else{
@@ -103,4 +105,7 @@ export class LoginPage {
     });
   }
 
+  updateUserInfo(user){
+    this.events.publish('user:created', user);
+   }
 }

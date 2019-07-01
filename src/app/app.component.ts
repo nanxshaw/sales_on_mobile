@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, Nav } from 'ionic-angular';
+import { Platform, Nav, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -28,6 +28,7 @@ export class MyApp {
   constructor(platform: Platform, 
     statusBar: StatusBar, 
     splashScreen: SplashScreen,
+    public events: Events,
     public globalvars:GlobalvarProvider,
     private database : DatabaseProvider) {
     platform.ready().then(() => {
@@ -37,24 +38,32 @@ export class MyApp {
       splashScreen.hide();
       this.menu_category();
 
-      // database.init().then(() => {
-      //   database.all_user().then((res) => {
-      //     this.list = res;
-      //     if(this.list.rows.length > 0){
-      //       this.nama = this.list.rows.item(0).name;
-      //       this.email = this.list.rows.item(0).email;
-      //       this.rootPage = HomePage;
-      //       this.globalvars.setMyGlobalVar(1);
-      //     }else{
+      database.init().then(() => {
+        database.all_user().then((res) => {
+          this.list = res;
+          if(this.list.rows.length > 0){
+            this.nama = this.list.rows.item(0).name;
+            this.email = this.list.rows.item(0).email;
+            this.rootPage = HomePage;
+            this.globalvars.setMyGlobalVar(1);
+          }else{
             this.rootPage = LoginPage;
-        //     this.globalvars.setMyGlobalVar(0);
-        //   }
-        // });
+            this.globalvars.setMyGlobalVar(0);
+          }
+        });
 
-        // },(reject) => {
-        //   console.log("Init DB Failed : " + reject);
-        // });
+        },(reject) => {
+          console.log("Init DB Failed : " + reject);
+        });
+      // this.rootPage = ReportPage;
       });
+      
+    events.subscribe('user:created', (user) => {
+
+      this.nama=user.name;
+      this.email=user.email;
+
+    });
   }
 
   profile(){

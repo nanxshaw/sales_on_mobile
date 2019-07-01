@@ -54,6 +54,19 @@ export class DatabaseProvider {
       });
     });
   }
+  
+  update_user(data){   
+    console.log(data.email);
+    return new Promise((resolve, reject) => {
+      this.db.executeSql('UPDATE user SET email=?, position=?, password=?, name=?, phone=?, company=? WHERE id_user=?',[data.email, data.position, data.password, data.name, data.phone, data.company, data.id])
+      .then(res => {
+        console.log(res);
+        resolve(res);
+      }, (err) => {
+        reject(err);
+      });
+    });
+  }
 
   delete_user(){   
     return new Promise((resolve, reject) => {

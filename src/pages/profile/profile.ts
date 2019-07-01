@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, LoadingController, AlertController
 import { RestProvider } from '../../providers/rest/rest';
 import { HomePage } from '../home/home';
 import * as moment from 'moment';
+import { DatabaseProvider } from '../../providers/database/database';
 
 /**
  * Generated class for the ProfilePage page.
@@ -32,6 +33,7 @@ export class ProfilePage {
     public navParams: NavParams,
     public rest : RestProvider,
     private loadingCtrl: LoadingController,
+    public db : DatabaseProvider,
     public alertCtrl: AlertController) {
       this.user = navParams.data;
       console.log(this.user);
@@ -71,10 +73,13 @@ export class ProfilePage {
     };
     console.log(json);
       this.rest.postRest('ubah_password', json).then((res) => { 
-      
-        this.loadermsg.dismiss();
         console.log(res);
-        this.navCtrl.setRoot(HomePage);
+        
+        this.db.update_user(json).then((res2) => {
+      
+          this.loadermsg.dismiss();
+          this.navCtrl.setRoot(HomePage);
+        });
       
       },(err) => {
         this.loadermsg.dismiss();

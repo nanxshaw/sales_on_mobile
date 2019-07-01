@@ -24,13 +24,17 @@ export class CustomerPage {
     public rest : RestProvider) {
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter ()  {
     this.initializeItems();
     console.log('ionViewDidLoad CustomerPage');
   }
 
   initializeItems() {
     this.search();
+  }
+
+  tambah(){
+    this.navCtrl.push(DetailCustomerPage, '');
   }
 
   search(){

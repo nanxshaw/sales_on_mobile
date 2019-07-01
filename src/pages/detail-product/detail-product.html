@@ -15,23 +15,27 @@
 
   <ion-item>
     <ion-label stacked>Product Code</ion-label>
-    <ion-input [(ngModel)]="data.code" type="text" disabled="true"></ion-input>
+    <ion-input [(ngModel)]="datas.code" type="text" ></ion-input>
   </ion-item>
   
   <ion-item>
     <ion-label stacked>Product Name</ion-label>
-    <ion-input [(ngModel)]="data.name" type="text" disabled="true"></ion-input>
+    <ion-input [(ngModel)]="datas.name" type="text" ></ion-input>
   </ion-item>
   
   <ion-item>
     <ion-label stacked>Product Type</ion-label>
-    <ion-select [(ngModel)]="data.id_type" multiple="false" cancelText="Cancel" okText="Okay!">
+    <ion-select [(ngModel)]="datas.product_type_id" multiple="false" cancelText="Cancel" okText="Okay!">
       <ion-option *ngFor="let item of items" [value] = "item.id" [selected]="item.id == data.id_type">{{ item.name }}</ion-option>
     </ion-select>
   </ion-item>
   
   <ion-item>
     <ion-label stacked>Description</ion-label> 
-    <ion-textarea #myInput id="myInput" disabled="true" rows="1" maxLength="500" (keyup)="resize()" [(ngModel)]="data.description"></ion-textarea>  
+    <ion-textarea #myInput id="myInput"  rows="1" maxLength="500" (keyup)="resize()" [(ngModel)]="datas.description"></ion-textarea>  
   </ion-item>
+  <div>
+    <button ion-button full color="robin" (click)="done()">Submit</button>
+    <button *ngIf="data != ''" ion-button full color="robin" outline (click)="del()">Delete</button>
+  </div>
 </ion-content>

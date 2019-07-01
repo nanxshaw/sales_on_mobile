@@ -12,6 +12,13 @@
 
 <ion-content padding>
   <ion-item>
+    <ion-label stacked>Customer</ion-label>
+    <ion-select [(ngModel)]="datas.customer" multiple="false" cancelText="Cancel" okText="Okay!">
+      <ion-option *ngFor="let item of items" [value] = "item.id" [selected]="item.id == datas.id">{{ item.name }}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
     <ion-label>Start Date</ion-label>
     <ion-datetime displayFormat="YYYY-MM-DD HH:mm:ss" [(ngModel)]="datas.start"></ion-datetime>
   </ion-item>
@@ -27,5 +34,8 @@
   </ion-item>
 
   
-  <button ion-button full color="robin" (click)="done()">Submit</button>
+  <div>
+    <button ion-button full color="robin" (click)="done()">Submit</button>
+    <button *ngIf="data != ''" ion-button full color="robin" outline (click)="del()">Delete</button>
+  </div>
 </ion-content>

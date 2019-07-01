@@ -36,12 +36,13 @@ export class DetailAppointmentPage {
       if(this.data != ''){
         this.datas = this.data;
       }else{
-        this.datas = { "start":"","end":"", "description":"" };
+        this.datas = { "start":"","end":"", "description":"","customer":"" };
       }
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetailRequestPage');
+    this.list();
   }
 
   showAlert(title, subtitle) {
@@ -70,7 +71,8 @@ export class DetailAppointmentPage {
         "start" : this.datas.start,
         "end" : this.datas.end,
         "description" : this.datas.description, 
-        "customer_id" : this.user.rows.item(0).id_user,
+        "customer_id" : this.datas.customer,
+        "sales_id" : this.user.rows.item(0).id_user,
         "updated_at" : date,
       };
       where = 'update_appointment';
@@ -79,7 +81,8 @@ export class DetailAppointmentPage {
         "start" : this.datas.start,
         "end" : this.datas.end,
         "description" : this.datas.description, 
-        "customer_id" : this.user.rows.item(0).id_user,
+        "customer_id" : this.datas.customer,
+        "sales_id" : this.user.rows.item(0).id_user,
         "created_at" : date,
       };
       where = 'create_appointment';
@@ -97,6 +100,35 @@ export class DetailAppointmentPage {
     });
   }
   
+  
+  del(){
+    
+    let json = {
+      "id" : this.datas.id,
+      "scheduleh_id" : this.datas.scheduleh_id,
+    }
+    console.log(json);
+    this.rest.postRest('delete_appointment', json).then((res) => { 
+    
+      console.log(res);
+      this.navCtrl.pop();
+    
+    },(err) => {
+    });
+  }
+
+list(){
+  this.rest.getRest('show_customer').then((res) => { 
+    this.cm = res;
+    let data = [];
+    for (let i = 0; i < this.cm.data.length; i++) {
+      data.push(this.cm.data[i]);
+    }
+    this.items = data;
+    console.log(this.items);
+  });
+}
+
   resize() {
       var element = this.myInput['_elementRef'].nativeElement.getElementsByClassName("text-input")[0];
       var scrollHeight = element.scrollHeight;

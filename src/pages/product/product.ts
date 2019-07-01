@@ -23,8 +23,8 @@ export class ProductPage {
     public navParams: NavParams,
     public rest : RestProvider) {
   }
-
-  ionViewDidLoad() {
+  
+  ionViewWillEnter () {
     this.initializeItems();
   }
 
@@ -55,5 +55,9 @@ export class ProductPage {
   
   OpenDetail(item){
     this.navCtrl.push(DetailProductPage, item);
+  }
+
+  tambah(){
+    this.navCtrl.push(DetailProductPage, '');
   }
 }

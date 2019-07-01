@@ -1,8 +1,19 @@
 
-<ion-content padding>
-  <h1 class="title">SALES ON MOBILE</h1>
-  <p class="subtitle">Your Business Will Be Easier</p>
-  
+<ion-content>
+<div class="header">
+  <div class="ct">
+    <img src="assets/imgs/online-shop.png" width="100px" height="100px">
+    <h1 class="title">SALES ON MOBILE</h1>
+    <p class="subtitle">Simple & Easy</p>
+  </div>
+</div>
+<div class="fot">
+
+</div>
+</ion-content>
+
+
+  <ion-footer>
     <ion-item>
       <ion-input type="email" [(ngModel)]="user.email" placeholder="E-mail"></ion-input>
     </ion-item>
@@ -23,5 +34,5 @@
     <button ion-button full color="robin" (click)="login()">Login</button>
     <button ion-button full color="robin" outline (click)="register()" fill="clear">Register</button>
   </div>
-  </ion-content>
+  </ion-footer>
   
