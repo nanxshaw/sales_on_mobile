@@ -18,13 +18,13 @@
       <ion-input type="email" [(ngModel)]="user.email" placeholder="E-mail"></ion-input>
     </ion-item>
   
-    <ion-item>
+    <!-- <ion-item>
         <ion-label>Company</ion-label>
         <ion-select [(ngModel)]="user.company">
           <ion-option value="">- PILIH -</ion-option>
           <ion-option *ngFor="let list of ev" value="{{ list.company }}">{{ list.company }}</ion-option>
         </ion-select>
-    </ion-item>
+    </ion-item> -->
 
     <ion-item>
       <ion-input type="password" [(ngModel)]="user.password" placeholder="Password"></ion-input>

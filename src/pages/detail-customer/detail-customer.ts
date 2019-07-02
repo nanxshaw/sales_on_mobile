@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
 import * as moment from 'moment';
+import { DatabaseProvider } from '../../providers/database/database';
 
 /**
  * Generated class for the DetailCustomerPage page.
@@ -18,8 +19,11 @@ import * as moment from 'moment';
 export class DetailCustomerPage {
   data:any;
   datas:any;
+  user:any;
   constructor(public navCtrl: NavController, 
-    public rest : RestProvider, public navParams: NavParams) {
+    public rest : RestProvider, 
+    public db : DatabaseProvider,
+    public navParams: NavParams) {
     this.data = navParams.data;
     
     if(this.data != ''){
@@ -48,6 +52,8 @@ export class DetailCustomerPage {
   }
 
   done(){
+    this.db.all_user().then((res) => {
+      this.user = res;
     let json;
     let where;
     let date = moment().format("YYYY-MM-DD HH:mm:ss");
@@ -61,6 +67,7 @@ export class DetailCustomerPage {
         "phone" : this.datas.phone,
         "email" : this.datas.email,
         "updated_at" : date,
+        "id_user" : this.user.rows.item(0).id_user,
       }
       where = 'update_customer';
     }else{
@@ -72,6 +79,7 @@ export class DetailCustomerPage {
         "phone" : this.datas.phone,
         "email" : this.datas.email,
         "created_at" : date,
+        "id_user" : this.user.rows.item(0).id_user,
       }
       where = 'create_customer';
     }
@@ -82,6 +90,7 @@ export class DetailCustomerPage {
       this.navCtrl.pop();
     
     },(err) => {
+    });
     });
   }
 

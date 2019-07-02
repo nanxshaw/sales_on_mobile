@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
 import { DetailCustomerPage } from '../detail-customer/detail-customer';
+import { DatabaseProvider } from '../../providers/database/database';
 
 /**
  * Generated class for the CustomerPage page.
@@ -18,9 +19,11 @@ import { DetailCustomerPage } from '../detail-customer/detail-customer';
 export class CustomerPage {
   items:any;
   cari:any;
+  user:any;
   cm:any;
   constructor(public navCtrl: NavController, 
-    public navParams: NavParams,
+    public navParams: NavParams, 
+    public db : DatabaseProvider,
     public rest : RestProvider) {
   }
 
@@ -38,23 +41,26 @@ export class CustomerPage {
   }
 
   search(){
-    let $where; 
-    if(this.cari != null){
-      this.cari = this.cari;
-      $where = 'show_customer?search='+this.cari;
-    }else{
-      this.cari = '';
-      $where = 'show_customer';
-    }
-
-    this.rest.getRest($where).then((res) => { 
-      this.cm = res;
-      let data = [];
-      for (let i = 0; i < this.cm.data.length; i++) {
-        data.push(this.cm.data[i]);
+    this.db.all_user().then((result) => {
+      this.user = result;
+      let $where; 
+      if(this.cari != null){
+        this.cari = this.cari;
+        $where = 'show_customer?id='+this.user.rows.item(0).id_user+'&search='+this.cari;
+      }else{
+        this.cari = '';
+        $where = 'show_customer?id='+this.user.rows.item(0).id_user;
       }
-      this.items = data;
-      console.log(this.items);
+
+      this.rest.getRest($where).then((res) => { 
+        this.cm = res;
+        let data = [];
+        for (let i = 0; i < this.cm.data.length; i++) {
+          data.push(this.cm.data[i]);
+        }
+        this.items = data;
+        console.log(this.items);
+      });
     });
   }
   

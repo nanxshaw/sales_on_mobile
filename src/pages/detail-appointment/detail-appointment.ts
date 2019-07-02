@@ -67,13 +67,14 @@ export class DetailAppointmentPage {
     let where;
     if(this.data != ''){
       json = {
-        "id" : this.datas.id,
+        "id" : this.datas.scheduleh_id,
         "start" : this.datas.start,
         "end" : this.datas.end,
         "description" : this.datas.description, 
         "customer_id" : this.datas.customer,
         "sales_id" : this.user.rows.item(0).id_user,
         "updated_at" : date,
+        "id_user" : this.user.rows.item(0).id_user,
       };
       where = 'update_appointment';
     }else{
@@ -84,6 +85,7 @@ export class DetailAppointmentPage {
         "customer_id" : this.datas.customer,
         "sales_id" : this.user.rows.item(0).id_user,
         "created_at" : date,
+        "id_user" : this.user.rows.item(0).id_user,
       };
       where = 'create_appointment';
     }
@@ -104,7 +106,7 @@ export class DetailAppointmentPage {
   del(){
     
     let json = {
-      "id" : this.datas.id,
+      "id" : this.datas.scheduleh_id,
       "scheduleh_id" : this.datas.scheduleh_id,
     }
     console.log(json);
@@ -118,7 +120,9 @@ export class DetailAppointmentPage {
   }
 
 list(){
-  this.rest.getRest('show_customer').then((res) => { 
+  this.db.all_user().then((res) => {
+    this.user = res;
+  this.rest.getRest('show_customer?id='+this.user.rows.item(0).id_user).then((res) => { 
     this.cm = res;
     let data = [];
     for (let i = 0; i < this.cm.data.length; i++) {
@@ -126,6 +130,7 @@ list(){
     }
     this.items = data;
     console.log(this.items);
+  });
   });
 }
 

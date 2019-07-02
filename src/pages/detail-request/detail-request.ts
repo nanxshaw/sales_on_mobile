@@ -99,6 +99,7 @@ export class DetailRequestPage {
         "description" : this.datas.description, 
         "customer_id" : this.user.rows.item(0).id_user,
         "updated_at" : date,
+        "id_user" : this.user.rows.item(0).id_user,
       };
       where = 'update_request';
     }else{
@@ -108,6 +109,7 @@ export class DetailRequestPage {
         "customer_id" : this.user.rows.item(0).id_user,
         "description" : this.datas.description, 
         "created_at" : date,
+        "id_user" : this.user.rows.item(0).id_user,
       };
       console.log(json);
       where = 'create_request';

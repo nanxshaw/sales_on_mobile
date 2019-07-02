@@ -19,7 +19,7 @@ import { GlobalvarProvider } from '../../providers/globalvar/globalvar';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  user = { 'email':'', 'company':'', 'password':'' };
+  user = { 'email':'', 'password':'' };
   cm:any;
   ev:any;
   lgn:any;
@@ -60,7 +60,6 @@ export class LoginPage {
     this.loadermsg.present();
     let json = {
       "email" : this.user.email,
-      "company" : this.user.company,
       "password" : this.user.password,
     };
     console.log(json);
