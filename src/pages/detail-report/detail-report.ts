@@ -6,6 +6,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import * as moment from 'moment';
 import { RestProvider } from '../../providers/rest/rest';
+import { DatabaseProvider } from '../../providers/database/database';
 /**
  * Generated class for the DetailReportPage page.
  *
@@ -32,9 +33,12 @@ export class DetailReportPage {
   in = {"m":"", "y":""};
   m:any;
   y:any;
+  user:any;
   year:any;
   mounth:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public rest : RestProvider) {
+  constructor(public navCtrl: NavController, 
+    public db : DatabaseProvider, 
+    public navParams: NavParams, public rest : RestProvider) {
     this.data = navParams.data;
     console.log(this.data);
     if(this.in.m <= '9'){
@@ -48,18 +52,24 @@ export class DetailReportPage {
     console.log('ionViewDidLoad DetailReportPage');
   }
   onChange(){
-    if(this.data == 'customer'){
-      this.grafik_customer();
-    }else if(this.data == 'request'){
-      this.grafik_request();
+    if(this.in.m != '' && this.in.y != ''){
+      if(this.data == 'customer'){
+        this.grafik_customer();
+      }else if(this.data == 'request'){
+        this.grafik_request();
+      }else{
+        this.grafik_appointment();
+      }
     }else{
-      this.grafik_appointment();
+
     }
   }
 
   customer(){
     return new Promise((resolve, reject) => {
-    this.rest.getRest('show_customer_group').then((res) => { 
+    this.db.all_user().then((result) => {
+      this.user = result;
+    this.rest.getRest('show_customer_group?id='+this.user.rows.item(0).id_user).then((res) => { 
       this.cm = res;
       let data = [];
       for (let i = 0; i < this.cm.data.length; i++) {
@@ -72,13 +82,16 @@ export class DetailReportPage {
       }
       this.items = data;
       resolve(this.items);
+    });
     });
     });
   }
 
   request(){
     return new Promise((resolve, reject) => {
-    this.rest.getRest('show_request_group').then((res) => { 
+    this.db.all_user().then((result) => {
+      this.user = result;
+    this.rest.getRest('show_request_group?id='+this.user.rows.item(0).id_user).then((res) => { 
       this.cm = res;
       let data = [];
       for (let i = 0; i < this.cm.data.length; i++) {
@@ -91,13 +104,16 @@ export class DetailReportPage {
       }
       this.items = data;
       resolve(this.items);
+    });
     });
     });
   }
 
   appointment(){
     return new Promise((resolve, reject) => {
-    this.rest.getRest('show_appointment_group').then((res) => { 
+    this.db.all_user().then((result) => {
+      this.user = result;
+    this.rest.getRest('show_appointment_group?id='+this.user.rows.item(0).id_user).then((res) => { 
       this.cm = res;
       let data = [];
       for (let i = 0; i < this.cm.data.length; i++) {
@@ -110,6 +126,7 @@ export class DetailReportPage {
       }
       this.items = data;
       resolve(this.items);
+    });
     });
     });
   }

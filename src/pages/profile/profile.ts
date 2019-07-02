@@ -27,6 +27,7 @@ export class ProfilePage {
   //   'email':'',
   //   'new_password':'',
   // };
+  list:any;
   pwd:any;
   user:any;
   constructor(public navCtrl: NavController, 
@@ -74,12 +75,17 @@ export class ProfilePage {
     console.log(json);
       this.rest.postRest('ubah_password', json).then((res) => { 
         console.log(res);
-        
-        this.db.update_user(json).then((res2) => {
-      
+        this.list = res;
+        if(this.list.message == 'gagal'){
           this.loadermsg.dismiss();
-          this.navCtrl.setRoot(HomePage);
-        });
+          this.showAlert('Profile','E-mail sudah digunakan');
+        }else{
+          this.db.update_user(json).then((res2) => {
+        
+            this.loadermsg.dismiss();
+            this.navCtrl.setRoot(HomePage);
+          });
+        }
       
       },(err) => {
         this.loadermsg.dismiss();

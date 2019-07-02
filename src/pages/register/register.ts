@@ -26,6 +26,7 @@ export class RegisterPage {
     'password':'',
     're_password':'',
   };
+  list:any;
   loadermsg:any;
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -71,10 +72,15 @@ export class RegisterPage {
     console.log(json);
     if(this.user.password == this.user.re_password){
       this.rest.postRest('register', json).then((res) => { 
-      
-        this.loadermsg.dismiss();
-        console.log(res);
-        this.navCtrl.setRoot(LoginPage);
+        this.list = res;
+        if(this.list.message == "gagal"){
+          this.loadermsg.dismiss();
+          this.showAlert('Register','E-mail sudah digunakan');
+        }else{
+          this.loadermsg.dismiss();
+          console.log(res);
+          this.navCtrl.setRoot(LoginPage);
+        }
       
       },(err) => {
         this.loadermsg.dismiss();

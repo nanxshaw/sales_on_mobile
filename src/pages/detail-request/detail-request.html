@@ -13,6 +13,13 @@
 <ion-content padding>
   
   <ion-item>
+    <ion-label stacked>Customer</ion-label>
+    <ion-select [(ngModel)]="datas.customer" multiple="false" cancelText="Cancel" okText="Okay!">
+      <ion-option *ngFor="let item2 of items2" [value] = "item2.id" [selected]="item2.id == datas.customer_id">{{ item2.name }}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
     <ion-label stacked>Select Product</ion-label>
     <ion-select [(ngModel)]="product" multiple="false" cancelText="Cancel" okText="Okay!">
       <ion-option *ngFor="let item of items" [value] = "item.id" [selected]="item.id == data.product_id" >{{ item.name }}</ion-option>

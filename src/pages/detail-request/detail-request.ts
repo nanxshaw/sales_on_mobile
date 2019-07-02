@@ -21,8 +21,10 @@ export class DetailRequestPage {
   @ViewChild('myInput') myInput: ElementRef;
   data:any;
   cm:any;
+  cm2:any;
   user:any;
   items:any;
+  items2:any;
   product:any;
   datas:any;
   loadermsg:any;
@@ -37,12 +39,13 @@ export class DetailRequestPage {
       if(this.data != ''){
         this.datas = this.data;
       }else{
-        this.datas = { "qty":"", "description":"" };
+        this.datas = { "qty":"", "description":"", "customer":"" };
       }
   }
 
   ionViewDidLoad() {
     this.list();
+    this.list_customer();
     console.log('ionViewDidLoad DetailRequestPage');
   }
   selected(id) {
@@ -63,6 +66,22 @@ export class DetailRequestPage {
       }
       this.items = data;
       console.log(this.items);
+    });
+  }
+
+  
+  list_customer(){
+    this.db.all_user().then((result) => {
+      this.user = result;
+    this.rest.getRest('show_customer?id='+this.user.rows.item(0).id_user).then((res) => { 
+      this.cm2 = res;
+      let data = [];
+      for (let i = 0; i < this.cm2.data.length; i++) {
+        data.push(this.cm2.data[i]);
+      }
+      this.items2 = data;
+      console.log(this.items);
+    });
     });
   }
 
@@ -97,7 +116,7 @@ export class DetailRequestPage {
         "product_id" : this.product,
         "qty" : this.datas.qty,
         "description" : this.datas.description, 
-        "customer_id" : this.user.rows.item(0).id_user,
+        "customer_id" : this.datas.customer,
         "updated_at" : date,
         "id_user" : this.user.rows.item(0).id_user,
       };
@@ -106,7 +125,7 @@ export class DetailRequestPage {
       json = { 
         "product_id" : this.product,
         "qty" : this.datas.qty,
-        "customer_id" : this.user.rows.item(0).id_user,
+        "customer_id" : this.datas.customer,
         "description" : this.datas.description, 
         "created_at" : date,
         "id_user" : this.user.rows.item(0).id_user,
