@@ -75,7 +75,9 @@ export class DetailProductPage {
     let where;
     let date = moment().format("YYYY-MM-DD HH:mm:ss");
     if(this.data != ''){
-
+      if(this.datas.product_type_id == ""){
+        this.datas.product_type_id = this.data.id_type; 
+      }
       json = {
         "id" : this.datas.id,
         "name" : this.datas.name,

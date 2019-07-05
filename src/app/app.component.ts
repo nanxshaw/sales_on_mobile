@@ -55,7 +55,7 @@ export class MyApp {
         },(reject) => {
           console.log("Init DB Failed : " + reject);
         });
-      // this.rootPage = ReportPage;
+      // this.rootPage = ProductPage;
       });
       
     events.subscribe('user:created', (user) => {
